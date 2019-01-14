@@ -3,7 +3,18 @@
     <groupId>com.miage.altea.tp</groupId>
     <artifactId>handcrafting</artifactId>
     <version>0.1.0</version>
-    <packaging>war</packaging> 
+    <packaging>war</packaging>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>3.2.2</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source> 
