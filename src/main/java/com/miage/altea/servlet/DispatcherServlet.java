@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.lang.annotation.Annotation;
+import java.io.OutputStream;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,15 +29,22 @@ public class DispatcherServlet extends HttpServlet {
         Object parameters = req.getParameterMap();
 
         if(method == null){
-            resp.sendError(404);
+            resp.sendError(404, "no mapping found for request uri " + req.getRequestURI());
             return;
         }
         try{
-            Object result = method.invoke(parameters);
+            Object result = new Object();
+            Object controller = method.getDeclaringClass().newInstance();
+            if(((Map) parameters).isEmpty()){
+                result = method.invoke(controller);
+            }else{
+             result = method.invoke(controller,parameters);
+            }
             resp.setStatus(200);
-            resp.getOutputStream().print(result.toString());
+
+            resp.getWriter().print(result.toString());
         }catch (Exception e){
-            resp.sendError(500);
+            resp.sendError(500, "exception when calling method someThrowingMethod : some exception message");
         }
     }
 
