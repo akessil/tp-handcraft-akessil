@@ -1,3 +1,5 @@
+package com.miage.altea.servlet;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

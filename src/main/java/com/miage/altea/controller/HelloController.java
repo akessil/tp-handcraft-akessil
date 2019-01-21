@@ -1,3 +1,8 @@
+package com.miage.altea.controller;
+
+
+import com.miage.altea.annotation.RequestMapping;
+
 @Controller
 public class HelloController {
 
