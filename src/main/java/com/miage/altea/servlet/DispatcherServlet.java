@@ -26,7 +26,7 @@ public class DispatcherServlet extends HttpServlet {
         System.out.println("Getting request for " + req.getRequestURI());
         final String uri = req.getRequestURI();
         final Method method = getMappingForUri(uri);
-        Object parameters = req.getParameterMap();
+        Map<String,String[]> parameters = req.getParameterMap();
 
         if(method == null){
             resp.sendError(404, "no mapping found for request uri " + req.getRequestURI());
